@@ -12,31 +12,32 @@ Create Table SoftwareE_Position(
 	Privilege int Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE
 );
 
-Create Table SoftwareE_Assigned_Review(
-	Review_ID number(4) Constraint AReview_ID_PK Primary Key DEFERRABLE INITIALLY IMMEDIATE,
-	User_ID number(5) Constraint AUser_ID_PK Primary Key DEFERRABLE INITIALLY IMMEDIATE
-);
-
 Create Table SoftwareE_Review(
 	Review_ID number(4) auto_increment Constraint Review_ID_PK Primary Key DEFERRABLE INITIALLY IMMEDIATE,
-	Review_Flag varchar2(10) Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
-	Leadership_Ability int Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE, 
-	Follow_Directions int Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
-	Gen_Contributions varchar2(250) Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
-	Technical_ability int Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
-	Creativity int Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
-	Punctionality int Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
-	Availability int Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
-	Attentiveness int Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
+	Review_Flag varchar2(10) Constraint Review_Flag_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
+	Leadership_Ability int Constraint Leadership_Ability_NN Not Null DEFERRABLE INITIALLY IMMEDIATE, 
+	Follow_Directions int Constraint Follow_Directions_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
+	Gen_Contributions varchar2(250) Constraint Gen_Contributions_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
+	Technical_ability int Constraint Technical_ability_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
+	Creativity int Constraint Creativity_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
+	Punctionality int Constraint Punctionality_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
+	Availability int Constraint Availability_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
+	Attentiveness int Constraint Attentiveness_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
 	Comments varchar2(250),
-	Work_in_Groups int Constraint User_FName_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
+	Work_in_Groups int Constraint Work_in_Groups_NN Not Null DEFERRABLE INITIALLY IMMEDIATE,
 	About_User_ID number(5),
 	From_User_ID number(5)
 );
 
-Alter Table SoftwareE_User Add Constraint Position_FK Foreign Key(Position_Code) References SoftwareE_Position(Position_Code) DEFERRABLE INITIALLY IMMEDIATE;
-Alter Table SoftwareE_Review Add Constraint About_User_ID_FK Foreign Key(About_User_ID) References SoftwareE_User(User_ID) DEFERRABLE INITIALLY IMMEDIATE;
-Alter Table SoftwareE_Review Add Constraint From_User_ID_FK Foreign Key(From_User_ID) References SoftwareE_User(User_ID) DEFERRABLE INITIALLY IMMEDIATE;
-Alter Table SoftwareE_Assigned_Review Add Constraint AReview_ID_FK Foreign Key(Review_ID) References SoftwareE_Review(Review_ID) DEFERRABLE INITIALLY IMMEDIATE;
-Alter Table SoftwareE_Assigned_Review Add Constraint AUser_ID_FK Foreign Key(User_ID) References SoftwareE_User(User_ID) DEFERRABLE INITIALLY IMMEDIATE;
+Create Table SoftwareE_Assigned_Review(
+	Review_ID number(4),
+	User_ID number(5)
+);
+
+Alter Table SoftwareE_User Add Constraint SPosition_FK Foreign Key(Position_Code) References SoftwareE_Position(Position_Code) DEFERRABLE INITIALLY IMMEDIATE;
+Alter Table SoftwareE_Review Add Constraint SE_About_User_ID_FK Foreign Key(About_User_ID) References SoftwareE_User(User_ID) DEFERRABLE INITIALLY IMMEDIATE;
+Alter Table SoftwareE_Review Add Constraint SE_From_User_ID_FK Foreign Key(From_User_ID) References SoftwareE_User(User_ID) DEFERRABLE INITIALLY IMMEDIATE;
+Alter Table SoftwareE_Assigned_Review Add CONSTRAINT SE_AReview_CK PRIMARY KEY(Review_ID, User_ID) DEFERRABLE INITIALLY IMMEDIATE;
+Alter Table SoftwareE_Assigned_Review Add Constraint SE_AReview_ID_FK Foreign Key(Review_ID) References SoftwareE_Review(Review_ID) DEFERRABLE INITIALLY IMMEDIATE;
+Alter Table SoftwareE_Assigned_Review Add Constraint SE_AUser_ID_FK Foreign Key(User_ID) References SoftwareE_User(User_ID) DEFERRABLE INITIALLY IMMEDIATE;
 

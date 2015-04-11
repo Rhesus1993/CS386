@@ -1,0 +1,9 @@
+Presentation
+
+Who are the team members
+abstract of the project
+acceptance criteria
+what design did we follow
+what we have developed
+what technologies we have used and why
+are there any inconsistencies between the criteria and the actual project
