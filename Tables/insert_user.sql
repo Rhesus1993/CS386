@@ -1,0 +1,1 @@
+Insert into SoftwareE_User(User_ID, User_FName, User_LName, User_Status, Position_Code, User_Login, User_Password) Values (00001, 'Riley', 'Shelton', '0', 0001, 'Potato Cat');
