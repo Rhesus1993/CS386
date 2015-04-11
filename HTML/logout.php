@@ -13,14 +13,14 @@
 		<meta charset="utf-8"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Logistica</title>
+		<title>Logistica Logout</title>
 	</head>
 
 	<body>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12">
-					<center><h3>Logistica Peer Evaluation System</h3></center>
+					<center><h3>Logistica Peer Evaluation System Logout Page</h3></center>
 				</div>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 							<li><a href="index.php">Homepage</a></li>
 							<li><a href="pending.php">Pending</a></li>
 							<li><a href="completed.php">Completed</a></li>
-							<li><a href="logout.php">Logout</a></li>
+							<li class="active"><a href="logout.php">Logout</a></li>
 						</ul>
 					</nav>
 				</div>

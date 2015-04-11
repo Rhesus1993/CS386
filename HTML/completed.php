@@ -13,7 +13,7 @@
 		<meta charset="utf-8"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Logistica</title>
+		<title>Logistica Completed Reviews</title>
 	</head>
 
 	<body>
@@ -21,6 +21,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<center><h3>Logistica Peer Evaluation System</h3></center>
+					<center><h4>Completed Reviews</h4></center>
 				</div>
 			</div>
 		</div>
@@ -32,13 +33,15 @@
 						<ul class="nav bs-docs-sidenav">
 							<li><a href="index.php">Homepage</a></li>
 							<li><a href="pending.php">Pending</a></li>
-							<li><a href="completed.php">Completed</a></li>
+							<li class="active"><a href="completed.php">Completed</a></li>
 							<li><a href="logout.php">Logout</a></li>
 						</ul>
 					</nav>
 				</div>
 				<div id="mainContent" class="col-lg-9" role="main">
-					
+					<ul style="list-style-type:none">
+						<li><a href="review.php?id=12345">Link to Review</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
