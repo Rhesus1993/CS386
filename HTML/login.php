@@ -38,9 +38,9 @@
 
 						<div class="row">
 							<div class="form-group" >
-								<label for="username" class="col-lg-2 control-label text-right">User ID</label>
+								<label for="UserID" class="col-lg-2 control-label text-right">User ID</label>
 								<div class="col-lg-6 input-block">
-									<input type="text" name="username" class="form-control" title="Username" placeholder="" required="required" data-validation-required-message="This field is Required" />
+									<input type="text" name="UserID" class="form-control" title="UserID" placeholder="" required="required" data-validation-required-message="This field is Required" />
 								</div>
 							</div>
 						</div>
