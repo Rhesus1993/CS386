@@ -2,6 +2,10 @@
 <?php
 	session_start();
 
+	if(!isset($_SESSION['login'])){
+		header("location: /cs386/login.php");
+	}
+
 
 ?>
 
@@ -19,7 +23,7 @@
 	<body>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-sm-12">
 					<center><h3>Logistica Peer Evaluation System</h3></center>
 				</div>
 			</div>
@@ -27,17 +31,18 @@
 		<hr />
 		<div class="container-fluid">
 			<div class="row">
-				<div id="leftNavigation" class="col-lg-3" role="navigation">
+				<div id="leftNavigation" class="col-sm-3" role="navigation">
 					<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
 						<ul class="nav bs-docs-sidenav">
 							<li><a href="index.php">Homepage</a></li>
 							<li><a href="pending.php">Pending</a></li>
 							<li><a href="completed.php">Completed</a></li>
 							<li><a href="logout.php">Logout</a></li>
+							<?php if($_SESSION['position'] === "1") { echo "<li><a href='admin.php'>Administration</a></li>"; } ?>
 						</ul>
 					</nav>
 				</div>
-				<div id="mainContent" class="col-lg-9" role="main">
+				<div id="mainContent" class="col-sm-9" role="main">
 					
 				</div>
 			</div>

@@ -1,8 +1,64 @@
 <!DOCTYPE html>
 <?php
 	session_start();
+	if(!isset($_SESSION['server'])){ $_SESSION['server'] = "localhost"; }
+	if(!isset($_SESSION['user'])){ $_SESSION['user'] = "root"; }
+	if(!isset($_SESSION['pass'])){ $_SESSION['pass'] = ""; }
+	if(!isset($_SESSION['dbname'])){ $_SESSION['dbname'] = "cs386"; }
 
+	if(isset($_SESSION['login'])){
+		header("location: /cs386/index.php");
+	}
 
+	#try to set the three registration fields in case of a bad submit
+	if(isset($_POST['UserID'])){
+		$userId = test_input(htmlentities($_POST['UserID']));
+	} else {
+		$userId = "";
+	}
+	if(isset($_POST['password'])){
+		$password = test_input(htmlentities($_POST['password']));
+	} else {
+		$password = "";
+	}
+	$_POST = array();
+	$sqlErr = "";
+
+	if($userId !== "" and $password !== ""){
+		#define the server, username, password, and database for the the sql connection
+		$server = $_SESSION['server'];
+		$user = $_SESSION['user'];
+		$pass = $_SESSION['pass'];
+		$dbname = $_SESSION['dbname'];
+  		#attempt to connect to the sql server defined above
+  		$conn = new mysqli($server, $user, $pass, $dbname);
+  		$query = "SELECT * FROM `user` WHERE `User_ID` = '".$userId."'";
+  		$result = $conn->query($query);
+  		if($result == TRUE){
+  			if($result->num_rows == 1){
+	  			$row = $result->fetch_assoc();
+	  			if($password == $row['User_Password'] && $row['User_Status'] == '0'){
+	  				$_SESSION['login'] = $row['User_ID'];
+	  				$_SESSION['position'] = $row['Position_Code'];
+	  				header("location: /cs386/index.php");
+	  			} else {
+	  				$sqlErr = "invalid password";
+	  			}
+	  		} else {
+	  			$sqlErr = "No such username found";
+	  		}
+  		} else {
+  			$sqlErr = "Error: " . $query . "\n" . $conn->error;
+  		}
+	}
+
+	#function to clean up input
+	function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+	}
 ?>
 
 <html lang="en">
@@ -20,7 +76,7 @@
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-sm-12">
 					<center><h3>Logistica Peer Evaluation System Login</h3></center>
 				</div>
 			</div>
@@ -29,35 +85,38 @@
 		<div class="container-fluid">
 
 			<div class="row">
-				<div id="mainContent" class="col-lg-4">
+				<div id="mainContent" class="col-sm-4">
 					<h4 class="text-right">Please Login to the System</h4>
+					<?php
+						echo "<center><p>".$sqlErr."</p></center>";
+					?>
 				</div>
 
-				<div id="LoginDiv" class="col-lg-8">
-					<form action="index.php" method="post">
+				<div id="LoginDiv" class="col-sm-8">
+					<form action="login.php" method="post">
 
 						<div class="row">
 							<div class="form-group" >
-								<label for="UserID" class="col-lg-2 control-label text-right">User ID</label>
-								<div class="col-lg-6 input-block">
-									<input type="text" name="UserID" class="form-control" title="UserID" placeholder="" required="required" data-validation-required-message="This field is Required" />
+								<label for="UserID" class="col-sm-2 control-label text-right">User ID</label>
+								<div class="col-sm-6 input-block">
+									<input type="text" id="UserID" name="UserID" class="form-control" title="UserID" placeholder="" required="required" data-validation-required-message="This field is Required" />
 								</div>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="form-group" >
-								<label for="password" class="col-lg-2 control-label text-right">Password</label>
-								<div class="col-lg-6 input-block">
-									<input type="password" name="password" class="form-control" title="Password" placeholder="" required="required" data-validation-required-message="This field is Required" />
+								<label for="password" class="col-sm-2 control-label text-right">Password</label>
+								<div class="col-sm-6 input-block">
+									<input type="password" id="password" name="password" class="form-control" title="Password" placeholder="" required="required" data-validation-required-message="This field is Required" />
 								</div>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="form-group">
-								<label for="submit" class="col-lg-2 control-label"></label>
-								<div class="col-lg-6">
+								<label for="submit" class="col-sm-2 control-label"></label>
+								<div class="col-sm-6">
 									<input type="submit" id="submit" name="submit" class="btn btn-default" value="Submit"/>
 								</div>
 							</div>
