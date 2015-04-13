@@ -39,7 +39,7 @@
 		$dbname = $_SESSION['dbname'];
   		#attempt to connect to the sql server defined above
   		$conn = new mysqli($server, $user, $pass, $dbname);
-  		$query = "SELECT * FROM 'User' WHERE 'User_ID' = '".$userId."'";
+  		$query = "SELECT * FROM `User` WHERE `User_ID` = `".$userId."`";
   		$result = $conn->query($query);
   		if($result == TRUE){
   			if($result->num_rows == 1){
