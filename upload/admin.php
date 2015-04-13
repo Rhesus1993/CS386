@@ -3,11 +3,11 @@
 	session_start();
 
 	if(!isset($_SESSION['login'])){
-		header("location: /cs386/login.php");
+		header("location: /~rs854/login.php");
 	}
 
 	if($_SESSION['position'] !== "1"){
-		header("location: /cs386/index.php");
+		header("location: /~rs854/index.php");
 	}
 
 	$postbackMessage = "";

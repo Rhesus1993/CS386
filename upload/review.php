@@ -3,7 +3,7 @@
 	session_start();
 
 	if(!isset($_SESSION['login'])){
-		header("location: login.php");
+		header("location: /~rs854/login.php");
 	}
 
 	#define the server, username, password, and database for the the sql connection
@@ -14,7 +14,7 @@
 
 	#attempt to connect to the sql server defined above
 	$conn = new mysqli($server, $user, $pass, $dbname);
-	$query = "SELECT * FROM `Review` INNER JOIN `User` on `User`.User_ID = `Review`.About_User_ID WHERE `Review_ID` = '".$_GET['id']."'";
+	$query = "SELECT * FROM `review` INNER JOIN `User` on `user`.User_ID = `review`.About_User_ID WHERE `Review_ID` = '".$_GET['id']."'";
 	$result = $conn->query($query);
 	$row = $result->fetch_assoc();
 ?>

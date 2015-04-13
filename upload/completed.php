@@ -3,7 +3,7 @@
 	session_start();
 
 	if(!isset($_SESSION['login'])){
-		header("location: /cs386/login.php");
+		header("location: /~rs854/login.php");
 	}
 
 	#define the server, username, password, and database for the the sql connection

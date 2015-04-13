@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <?php
 	session_start();
-	if(!isset($_SESSION['server'])){ $_SESSION['server'] = "tund"; }
-	if(!isset($_SESSION['user'])){ $_SESSION['user'] = "rs854script"; }
-	if(!isset($_SESSION['pass'])){ $_SESSION['pass'] = "CS212"; }
-	if(!isset($_SESSION['dbname'])){ $_SESSION['dbname'] = "rs854"; }
+	if(!isset($_SESSION['server'])){ $_SESSION['server'] = "mysql15.000webhost.com"; }
+	if(!isset($_SESSION['user'])){ $_SESSION['user'] = "a5126849_rs854"; }
+	if(!isset($_SESSION['pass'])){ $_SESSION['pass'] = "115710Willber"; }
+	if(!isset($_SESSION['dbname'])){ $_SESSION['dbname'] = "a5126849_cs386"; }
 
 	if(isset($_SESSION['login'])){
-		header("location: index.php");
+		header("location: /~rs854/index.php");
 	}
 
 	#try to set the three registration fields in case of a bad submit
@@ -40,7 +40,7 @@
 	  			if($password == $row['User_Password'] && $row['User_Status'] == '0'){
 	  				$_SESSION['login'] = $row['User_ID'];
 	  				$_SESSION['position'] = $row['Position_Code'];
-	  				header("location: index.php");
+	  				header("location: /~rs854/index.php");
 	  			} else {
 	  				$sqlErr = "invalid password";
 	  			}

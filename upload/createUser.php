@@ -2,10 +2,10 @@
 	session_start();
 
 	if(!isset($_SESSION['login'])){
-		header("location: /cs386/login.php");
+		header("location: /~rs854/login.php");
 	}
 	if(!isset($_POST['UserID'])){
-		header("location: /cs386/admin.php");
+		header("location: /~rs854/admin.php");
 	}
 
 	$server = $_SESSION['server'];
@@ -30,6 +30,6 @@
 	} else {
 		$_SESSION['postbackMessage'] = "User ID Already In Use";
 	}
-	header("location: /cs386/admin.php");
+	header("location: /~rs854/admin.php");
 
 ?>
